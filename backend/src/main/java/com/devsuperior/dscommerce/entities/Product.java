@@ -20,7 +20,7 @@ public class Product implements Serializable {
     @Column(columnDefinition = "TEXT")
     private String description;
     private Double price;
-    private String imrUrl;
+    private String imgUrl;
 
     @ManyToMany
     @JoinTable(name = "tb_product_category",
@@ -34,12 +34,12 @@ public class Product implements Serializable {
     public Product(){
     }
 
-    public Product(Long id, String name, String description, Double price, String imrUrl) {
+    public Product(Long id, String name, String description, Double price, String imgUrl) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
-        this.imrUrl = imrUrl;
+        this.imgUrl = imgUrl;
     }
 
     public Long getId() {
@@ -74,12 +74,12 @@ public class Product implements Serializable {
         this.price = price;
     }
 
-    public String getImrUrl() {
-        return imrUrl;
+    public String getImgUrl() {
+        return imgUrl;
     }
 
-    public void setImrUrl(String imrUrl) {
-        this.imrUrl = imrUrl;
+    public void setImgUrl(String imrUrl) {
+        this.imgUrl = imgUrl;
     }
 
     public Set<Category> getCategories() {
@@ -89,7 +89,7 @@ public class Product implements Serializable {
     public Set<OrderItem> getItems() {
         return items;
     }
-    
+
     public List<Order> getOrders() {
         return items.stream().map(x -> x.getOrder()).toList();
     }
