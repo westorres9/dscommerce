@@ -1,14 +1,24 @@
 package com.devsuperior.dscommerce.entities;
 
+import jakarta.persistence.*;
+
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
+@Entity
+@Table(name = "tb_user")
+public class User implements Serializable {
 
-public class User {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
+    @Column(unique = true)
     private String email;
     private String phone;
+
+    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private LocalDate birthDate;
     private String password;
 
