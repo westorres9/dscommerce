@@ -1,5 +1,7 @@
 package com.devsuperior.dscommerce.dto;
 
+import com.devsuperior.dscommerce.entities.Product;
+
 import java.io.Serializable;
 
 public class ProductDTO implements Serializable {
@@ -20,6 +22,14 @@ public class ProductDTO implements Serializable {
         this.description = description;
         this.price = price;
         this.imgUrl = imgUrl;
+    }
+
+    public ProductDTO(Product entity) {
+        this.id = entity.getId();
+        this.name = entity.getName();
+        this.description = entity.getDescription();
+        this.price = entity.getPrice();
+        this.imgUrl = entity.getImgUrl();
     }
 
     public Long getId() {
