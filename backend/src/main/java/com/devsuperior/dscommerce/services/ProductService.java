@@ -3,6 +3,7 @@ package com.devsuperior.dscommerce.services;
 import com.devsuperior.dscommerce.dto.ProductDTO;
 import com.devsuperior.dscommerce.entities.Product;
 import com.devsuperior.dscommerce.repositories.ProductRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -33,11 +34,38 @@ public class ProductService {
     @Transactional
     public ProductDTO insert(ProductDTO dto) {
         Product entity = new Product();
+        copyDtoToEntity(entity, dto);
+        entity = productRepository.save(entity);
+        return new ProductDTO(entity);
+    }
+
+    @Transactional
+    public ProductDTO update(Long id, ProductDTO dto) {
+        try {
+            Product entity = productRepository.getReferenceById(id);
+            copyDtoToEntity(entity, dto);
+            entity = productRepository.save(entity);
+            return new ProductDTO(entity);
+        }
+        catch (EntityNotFoundException e) {
+            throw new EntityNotFoundException("Entity not found");
+        }
+    }
+
+    @Transactional
+    public void delete(Long id) {
+        try {
+            productRepository.deleteById(id);
+        }
+        catch (EntityNotFoundException e) {
+            throw new EntityNotFoundException("Entity not found");
+        }
+    }
+
+    public void copyDtoToEntity(Product entity, ProductDTO dto) {
         entity.setName(dto.getName());
         entity.setDescription(dto.getDescription());
         entity.setPrice(dto.getPrice());
         entity.setImgUrl(dto.getImgUrl());
-        entity = productRepository.save(entity);
-        return new ProductDTO(entity);
     }
 }
