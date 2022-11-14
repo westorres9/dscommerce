@@ -1,6 +1,10 @@
 package com.devsuperior.dscommerce.dto;
 
 import com.devsuperior.dscommerce.entities.Product;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 
 import java.io.Serializable;
 
@@ -8,9 +12,21 @@ public class ProductDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
+
+    @Size(min = 3,max = 80, message = "Campo deve ter entre 3 e 80 caracteres")
+    @NotNull(message = "nome do produto nao pode ser nulo")
+    @NotBlank(message = "Campo deve ser preenchido")
     private String name;
+
+    @NotBlank(message = "Campo deve ser preenchido")
     private String description;
+
+    @NotNull(message = "preço do produto nao pode ser nulo")
+    @Positive(message = "Valor deve ser positivo")
     private Double price;
+
+    @NotNull(message = "imagem do produto nao pode ser nula")
+    @NotBlank(message = "Campo deve ser preenchido")
     private String imgUrl;
 
     public ProductDTO(){
