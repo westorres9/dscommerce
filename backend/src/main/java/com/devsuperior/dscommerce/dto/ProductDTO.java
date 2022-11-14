@@ -12,7 +12,7 @@ public class ProductDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
-    
+
     @Size(min = 3,max = 80, message = "Campo deve ter entre 3 e 80 caracteres")
     @NotNull(message = "nome do produto nao pode ser nulo")
     @NotBlank(message = "Campo deve ser preenchido")
