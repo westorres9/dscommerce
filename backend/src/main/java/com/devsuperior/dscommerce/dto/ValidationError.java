@@ -2,11 +2,13 @@ package com.devsuperior.dscommerce.dto;
 
 import com.devsuperior.dscommerce.controllers.handlers.FieldMessage;
 
+import java.io.Serializable;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ValidationError extends CustomError {
+    private static final long serialVersionUID = 1L;
 
     private List<FieldMessage> errors = new ArrayList<>();
 

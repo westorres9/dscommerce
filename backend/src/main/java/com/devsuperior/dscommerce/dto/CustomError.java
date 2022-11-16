@@ -1,8 +1,10 @@
 package com.devsuperior.dscommerce.dto;
 
+import java.io.Serializable;
 import java.time.Instant;
 
-public class CustomError {
+public class CustomError implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     private Instant timestamp;
     private Integer status;
