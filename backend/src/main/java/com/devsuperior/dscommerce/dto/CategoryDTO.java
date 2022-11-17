@@ -2,12 +2,14 @@ package com.devsuperior.dscommerce.dto;
 
 import com.devsuperior.dscommerce.entities.Category;
 
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
 public class CategoryDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
+    @NotBlank(message = "nome da categoria nao pode ser vazio")
     private String name;
 
     public CategoryDTO() {
