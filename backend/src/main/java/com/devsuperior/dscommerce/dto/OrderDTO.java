@@ -37,6 +37,10 @@ public class OrderDTO {
         this.status = entity.getStatus();
         this.client = new ClientDTO(entity.getClient());
         this.payment = (entity.getPayment() == null) ? null : new PaymentDTO(entity.getPayment());
+        for (OrderItem item : entity.getItems()) {
+            OrderItemDTO itemDTO = new OrderItemDTO(item);
+            items.add(itemDTO);
+        }
     }
 
     public Long getId() {
