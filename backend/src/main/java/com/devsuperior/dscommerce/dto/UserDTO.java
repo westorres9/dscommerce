@@ -3,11 +3,13 @@ package com.devsuperior.dscommerce.dto;
 import com.devsuperior.dscommerce.entities.User;
 import org.springframework.security.core.GrantedAuthority;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDTO {
+public class UserDTO implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     private Long id;
     private String name;
@@ -32,7 +34,7 @@ public class UserDTO {
         this.name = entity.getName();
         this.email = entity.getEmail();
         this.phone = entity.getPhone();
-        this.birthDate = getBirthDate();
+        this.birthDate = entity.getBirthDate();
         for(GrantedAuthority role : entity.getAuthorities()) {
             getRoles().add(role.getAuthority());
         }
