@@ -1,31 +1,28 @@
 package com.devsuperior.dscommerce.entities;
 
+import org.springframework.security.core.GrantedAuthority;
+
 import javax.persistence.*;
-
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
-
 @Entity
-@Table(name = "tb_category")
-public class Category implements Serializable {
+@Table(name = "tb_role")
+public class Role implements GrantedAuthority, Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    private String authority;
 
-    @ManyToMany(mappedBy = "categories")
-    private Set<Product> products = new HashSet<>();
 
-    public Category() {
+
+    public Role() {
     }
 
-    public Category(Long id, String name) {
+    public Role(Long id, String authority) {
         this.id = id;
-        this.name = name;
+        this.authority = authority;
     }
 
     public Long getId() {
@@ -36,24 +33,21 @@ public class Category implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    @Override
+    public String getAuthority() {
+        return authority;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Set<Product> getProducts() {
-        return products;
+    public void setAuthority(String authority) {
+        this.authority = authority;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Category category = (Category) o;
-        return Objects.equals(id, category.id);
+        Role role = (Role) o;
+        return Objects.equals(id, role.id);
     }
 
     @Override
