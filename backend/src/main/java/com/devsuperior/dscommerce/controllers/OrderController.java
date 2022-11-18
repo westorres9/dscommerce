@@ -34,4 +34,11 @@ public class OrderController {
                 .buildAndExpand(dto.getId()).toUri();
         return ResponseEntity.created(uri).body(dto);
     }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PutMapping(value = "/{id}/payment")
+    public ResponseEntity<OrderDTO> setPayment(@PathVariable Long id) {
+        OrderDTO dto = orderService.setPayment(id);
+        return ResponseEntity.ok().body(dto);
+    }
 }

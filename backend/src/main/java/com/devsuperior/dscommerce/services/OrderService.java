@@ -10,6 +10,8 @@ import com.devsuperior.dscommerce.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityNotFoundException;
 import java.time.Instant;
 import java.util.Optional;
 
@@ -57,5 +59,18 @@ public class OrderService {
         orderItemRepository.saveAll(order.getItems());
 
         return new OrderDTO(order);
+    }
+
+    @Transactional
+    public  OrderDTO setPayment(Long id) {
+        try {
+            Order order = orderRepository.getReferenceById(id);
+            order.setStatus(OrderStatus.PAID);
+            orderRepository.save(order);
+            return new OrderDTO(order);
+        }
+        catch (EntityNotFoundException e) {
+            throw new ResourceNotFoundException("Entity not found");
+        }
     }
 }
