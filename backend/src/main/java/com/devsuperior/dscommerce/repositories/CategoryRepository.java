@@ -1,4 +1,4 @@
-package com.devsuperior.dscommerce.controllers.repositories;
+package com.devsuperior.dscommerce.repositories;
 
 import com.devsuperior.dscommerce.entities.Category;
 import com.devsuperior.dscommerce.entities.Product;

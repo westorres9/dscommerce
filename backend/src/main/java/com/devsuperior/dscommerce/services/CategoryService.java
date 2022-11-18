@@ -1,9 +1,9 @@
 package com.devsuperior.dscommerce.services;
 
-import com.devsuperior.dscommerce.controllers.repositories.ProductRepository;
+import com.devsuperior.dscommerce.repositories.ProductRepository;
 import com.devsuperior.dscommerce.dto.CategoryDTO;
 import com.devsuperior.dscommerce.entities.Category;
-import com.devsuperior.dscommerce.controllers.repositories.CategoryRepository;
+import com.devsuperior.dscommerce.repositories.CategoryRepository;
 import com.devsuperior.dscommerce.services.exceptions.DatabaseException;
 import com.devsuperior.dscommerce.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
