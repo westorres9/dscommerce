@@ -1,4 +1,4 @@
-package com.devsuperior.dscommerce.repositories;
+package com.devsuperior.dscommerce.controllers.repositories;
 
 import com.devsuperior.dscommerce.entities.OrderItem;
 import com.devsuperior.dscommerce.entities.OrderItemPK;

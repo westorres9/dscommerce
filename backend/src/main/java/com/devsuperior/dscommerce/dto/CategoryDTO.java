@@ -1,9 +1,12 @@
 package com.devsuperior.dscommerce.dto;
 
 import com.devsuperior.dscommerce.entities.Category;
+import com.devsuperior.dscommerce.entities.Product;
 
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CategoryDTO implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -24,6 +27,11 @@ public class CategoryDTO implements Serializable {
         this.id = entity.getId();
         this.name = entity.getName();
     }
+
+    public CategoryDTO(Category entity, List<Product> products) {
+        this(entity);
+    }
+
 
     public Long getId() {
         return id;

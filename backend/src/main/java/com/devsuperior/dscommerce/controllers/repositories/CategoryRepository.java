@@ -1,4 +1,4 @@
-package com.devsuperior.dscommerce.repositories;
+package com.devsuperior.dscommerce.controllers.repositories;
 
 import com.devsuperior.dscommerce.entities.Category;
 import com.devsuperior.dscommerce.entities.Product;
@@ -8,10 +8,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Long> {
 
     @Query("SELECT obj FROM Category obj "
             + "WHERE UPPER(obj.name) LIKE UPPER(CONCAT('%', :name, '%'))")
-    Page<Category> searchByName(String name, Pageable pageable);
+    List<Category> searchByName(String name);
 }

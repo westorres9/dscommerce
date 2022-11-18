@@ -15,6 +15,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/categories")
@@ -24,10 +25,10 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @GetMapping
-    public ResponseEntity<Page<CategoryDTO>> findAll(
-            @RequestParam(name = "name", defaultValue = "") String name, Pageable pageable) {
-        Page<CategoryDTO> page = categoryService.findAll(name, pageable);
-        return ResponseEntity.ok().body(page);
+    public ResponseEntity<List<CategoryDTO>> findAll(
+            @RequestParam(name = "name", defaultValue = "") String name) {
+        List<CategoryDTO> list = categoryService.findAll(name);
+        return ResponseEntity.ok().body(list);
     }
 
     @GetMapping(value = "/{id}")
