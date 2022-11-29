@@ -1,0 +1,10 @@
+.dsc-btn-next-page {
+    border: 1px solid var(--dsc-color-btn-primary);
+    padding: 10px;
+    border-radius: 4px;
+    color: var(--dsc-color-btn-primary);
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+  }
