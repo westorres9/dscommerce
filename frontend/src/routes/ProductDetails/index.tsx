@@ -20,6 +20,10 @@ const product: Product = {
     {
       id: 3,
       name: 'Eletronicos'
+    },
+    {
+      id: 4,
+      name: 'Importados'
     }
   ]
 }
