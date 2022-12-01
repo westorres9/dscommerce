@@ -5,6 +5,7 @@ import ProductDetailsCard from "../../../components/ProductDetailsCard";
 import { Product } from '../../../types/Product';
 import * as productService from '../../../services/product-service';
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 
@@ -24,7 +25,9 @@ export default function ProductDetails() {
           }
           <div className="dsc-btn-page-container">
             <ButtonPrimary textButton="Comprar"/>
-            <ButtonInverse textButton="Início"/>
+            <Link to="/">
+              <ButtonInverse textButton="Início"/>
+            </Link>
           </div>
         </section>
       </main>
