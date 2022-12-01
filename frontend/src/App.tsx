@@ -1,14 +1,23 @@
-import HeaderClient from "./components/HeaderClient";
-import Catalog from "./routes/Catalog";
-import ProductDetails from "./routes/ProductDetails";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import Catalog from "./routes/ClientHome/Catalog";
+import ClientHome from "./routes/ClientHome";
+import ProductDetails from "./routes/ClientHome/ProductDetails";
 
 
 export default function App() {
 
   return (
     <>
-      <HeaderClient/>
-      <Catalog/>
+      <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<ClientHome/>}>
+          <Route index element={<Catalog/>}/>
+          <Route path="catalog" element={<Catalog/>}/>
+          <Route path="product-details/:productId" element={<ProductDetails/>}/>
+          <Route path="*" element={<Navigate to="/"/>}/>
+        </Route>
+      </Routes>
+      </BrowserRouter>
     </>
   );   
 }
