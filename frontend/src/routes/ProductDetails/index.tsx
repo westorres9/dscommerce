@@ -70,8 +70,6 @@ const product3: Product = {
 
 export default function ProductDetails() {
   return (
-    <>
-    <HeaderClient/>
       <main>
         <section id="product-details-section" className="dsc-container">
           <ProductDetailsCard product={product3}/>
@@ -81,6 +79,5 @@ export default function ProductDetails() {
           </div>
         </section>
       </main>
-    </>
   );
 }

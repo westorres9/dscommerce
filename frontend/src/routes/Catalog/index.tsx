@@ -5,6 +5,7 @@ import CatalogCard from "../../components/CatalogCard";
 import ButtonNextPage from "../../components/ButtonNextPage";
 import { Product } from "../../types/Product";
 import HeaderClient from "../../components/HeaderClient";
+import { Outlet } from "react-router-dom";
 
 const product1: Product = {
   id: 2,
@@ -74,29 +75,25 @@ const product3: Product = {
 
 export default function Catalog() {
   return (
-    <>
-      <HeaderClient />
-      <main>
-        <section id="catalog-section" className="dsc-container">
-          <SearchBar />
+    <main>
+      <section id="catalog-section" className="dsc-container">
+        <SearchBar />
 
-          <div className="dsc-catalog-cards dsc-mb20 dsc-mt20">
-            <CatalogCard key={product1.id} product={product1} />
-            <CatalogCard key={product.id} product={product} />
-            <CatalogCard key={product3.id} product={product3} />
-            <CatalogCard key={product.id} product={product} />
-            <CatalogCard key={product.id} product={product} />
-            <CatalogCard key={product.id} product={product} />
-            <CatalogCard key={product.id} product={product} />
-            <CatalogCard key={product.id} product={product} />
-            <CatalogCard key={product.id} product={product} />
-            <CatalogCard key={product.id} product={product} />
-            <CatalogCard key={product.id} product={product} />
-          </div>
-
-          <ButtonNextPage />
-        </section>
-      </main>
-    </>
+        <div className="dsc-catalog-cards dsc-mb20 dsc-mt20">
+          <CatalogCard key={product1.id} product={product1} />
+          <CatalogCard key={product.id} product={product} />
+          <CatalogCard key={product3.id} product={product3} />
+          <CatalogCard key={product.id} product={product} />
+          <CatalogCard key={product.id} product={product} />
+          <CatalogCard key={product.id} product={product} />
+          <CatalogCard key={product.id} product={product} />
+          <CatalogCard key={product.id} product={product} />
+          <CatalogCard key={product.id} product={product} />
+          <CatalogCard key={product.id} product={product} />
+          <CatalogCard key={product.id} product={product} />
+        </div>
+        <ButtonNextPage />
+      </section>
+    </main>
   );
 }
