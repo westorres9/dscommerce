@@ -16,7 +16,7 @@ export default function Catalog() {
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(()=>{
-    axios.get("http://localhost:8080/products?size=12")
+    productService.findAll()
     .then(response => {
       setProducts(response.data.content)
       console.log(response.data.content)
