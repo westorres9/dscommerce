@@ -18,6 +18,8 @@ type QueryParams = {
 
 export default function Catalog() {
 
+  const [isLastPage, setIsLastPage] = useState(false);
+
   const [products, setProducts] = useState<Product[]>([]);
 
   const [queryParams, setQueryParams] = useState<QueryParams>({
@@ -29,14 +31,20 @@ export default function Catalog() {
   useEffect(()=>{
     productService.findPageRequest(queryParams.page,queryParams.name)
     .then(response => {
-      setProducts(response.data.content)
-      console.log(response.data.content)
+      const nextPage = response.data.content;
+      setProducts(products.concat(nextPage))
+      setIsLastPage(response.data.last)
     })
   },[queryParams]);
 
 
   function handleSearch(searchText: string) {
-    setQueryParams({...queryParams, name: searchText});
+    setProducts([]);
+    setQueryParams({...queryParams,page: 0, name: searchText});
+  }
+
+  function handleNextPageClick() {
+    setQueryParams({...queryParams, page: queryParams.page + 1})
   }
 
   return (
@@ -51,7 +59,12 @@ export default function Catalog() {
               product => <CatalogCard key={product.id} product={product} />)
           }
         </div>
-        <ButtonNextPage />
+        {
+          !isLastPage &&
+          <div onClick={handleNextPageClick}>
+          <ButtonNextPage />
+          </div>
+        }
       </section>
     </main>
   );
