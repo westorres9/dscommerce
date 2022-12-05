@@ -8,9 +8,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-
-
-
 export default function ProductDetails() {
 
   const navigate = useNavigate();
@@ -38,7 +35,7 @@ export default function ProductDetails() {
             <ProductDetailsCard product={product}/>
           }
           <div className="dsc-btn-page-container">
-            <ButtonPrimary textButton="Comprar"/>
+            <Link to="/cart"><ButtonPrimary textButton="Comprar"/></Link>
             <Link to="/">
               <ButtonInverse textButton="Início"/>
             </Link>
