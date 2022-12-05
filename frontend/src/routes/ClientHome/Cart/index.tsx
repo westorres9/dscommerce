@@ -7,7 +7,12 @@ import { Link } from 'react-router-dom';
 
 export default function Cart() {
 
-    const [cart, setCart] = useState<Order>(cartService.getCart);
+    const [cart, setCart] = useState<Order>(cartService.getCart());
+
+    function handleClearClick() {
+      cartService.clearCart();
+      setCart(cartService.getCart())
+    }
 
     return (
         <main>
@@ -57,6 +62,9 @@ export default function Cart() {
               Continuar comprando
             </div>
             </Link>
+            <div onClick={handleClearClick} className="dsc-btn dsc-btn-white">
+              Limpar Carrinho
+            </div>
         </div>
       </section>
     </main>

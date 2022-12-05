@@ -19,3 +19,7 @@ export function addProduct(product: Product) {
         cartRepository.save(cart);
     }
 }
+
+export function clearCart() {
+    cartRepository.clear();
+}
