@@ -11,36 +11,46 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Category } from "../../../types/category";
 
+type QueryParams = {
+  page: number;
+  name: string;
+}
 
 export default function Catalog() {
 
+  const [isLastPage, setIsLastPage] = useState(false);
+
   const [products, setProducts] = useState<Product[]>([]);
 
-  const objTest: Category = {
-    id:8,
-    name: 'Jardinagem'
-  }
+  const [queryParams, setQueryParams] = useState<QueryParams>({
+    page: 0,
+    name: ''
+  })
+
 
   useEffect(()=>{
-
-    //localStorage.setItem("minhaCategoria", JSON.stringify(objTest));
-
-
-    //const obj = localStorage.getItem(JSON.parse(localStorage.getItem("minhaCategoria") ||""))
-    //console.log(obj);
-
-    productService.findAll()
+    productService.findPageRequest(queryParams.page,queryParams.name)
     .then(response => {
-      setProducts(response.data.content)
-      console.log(response.data.content)
+      const nextPage = response.data.content;
+      setProducts(products.concat(nextPage))
+      setIsLastPage(response.data.last)
     })
-  },[]);
+  },[queryParams]);
 
+
+  function handleSearch(searchText: string) {
+    setProducts([]);
+    setQueryParams({...queryParams,page: 0, name: searchText});
+  }
+
+  function handleNextPageClick() {
+    setQueryParams({...queryParams, page: queryParams.page + 1})
+  }
 
   return (
     <main>
       <section id="catalog-section" className="dsc-container">
-        <SearchBar />
+        <SearchBar onSearch={handleSearch}/>
 
         <div className="dsc-catalog-cards dsc-mb20 dsc-mt20">
 
@@ -49,7 +59,12 @@ export default function Catalog() {
               product => <CatalogCard key={product.id} product={product} />)
           }
         </div>
-        <ButtonNextPage />
+        {
+          !isLastPage &&
+          <div onClick={handleNextPageClick}>
+          <ButtonNextPage />
+          </div>
+        }
       </section>
     </main>
   );
