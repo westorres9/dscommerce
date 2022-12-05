@@ -11,36 +11,38 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Category } from "../../../types/category";
 
+type QueryParams = {
+  page: number;
+  name: string;
+}
 
 export default function Catalog() {
 
   const [products, setProducts] = useState<Product[]>([]);
 
-  const objTest: Category = {
-    id:8,
-    name: 'Jardinagem'
-  }
+  const [queryParams, setQueryParams] = useState<QueryParams>({
+    page: 0,
+    name: ''
+  })
+
 
   useEffect(()=>{
-
-    //localStorage.setItem("minhaCategoria", JSON.stringify(objTest));
-
-
-    //const obj = localStorage.getItem(JSON.parse(localStorage.getItem("minhaCategoria") ||""))
-    //console.log(obj);
-
-    productService.findAll()
+    productService.findPageRequest(queryParams.page,queryParams.name)
     .then(response => {
       setProducts(response.data.content)
       console.log(response.data.content)
     })
-  },[]);
+  },[queryParams]);
 
+
+  function handleSearch(searchText: string) {
+    setQueryParams({...queryParams, name: searchText});
+  }
 
   return (
     <main>
       <section id="catalog-section" className="dsc-container">
-        <SearchBar />
+        <SearchBar onSearch={handleSearch}/>
 
         <div className="dsc-catalog-cards dsc-mb20 dsc-mt20">
 
