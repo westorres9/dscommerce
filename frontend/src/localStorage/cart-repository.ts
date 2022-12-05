@@ -7,6 +7,6 @@ export function save(cart: Order){
 }
 
 export function get() : Order {
-    const str = localStorage.getItem(CART_KEY) || '{"items"=[]}';
+    const str = localStorage.getItem(CART_KEY) || '{"items":[]}';
     return JSON.parse(str);
 }
