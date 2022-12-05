@@ -1,24 +1,24 @@
 import './styles.css';
 import computerImg from '../../../assets/img/computer.png'
+import { useEffect } from 'react';
+import * as cartService from '../../../services/cart-service';
+import { Order, OrderItem } from '../../../types/order';
 
-const cart = {
-  items: [
-  {
-  productId: 4,
-  quantity: 1,
-  name: "PC Gamer",
-  price: 1200,
-  imgUrl: "https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/4-big.jpg"},
-  {
-  productId: 5,
-  quantity: 2,
-  name: "Rails for Dummies",
-  price: 100.99,
-  imgUrl: "https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/5-big.jpg"}
-  ]
-  }
+const item1: OrderItem = new OrderItem(4,1,"PC Gamer",1200,"https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/4-big.jpg");
+const item2: OrderItem = new OrderItem(5,2,"Rails for Dummies",100.99,"https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/5-big.jpg")
 
+  
 export default function Cart() {
+
+    const cart: Order = new Order();
+
+    useEffect(() => {
+      
+      cart.items.push(item1);
+      cart.items.push(item2);
+      cartService.saveCart(cart)
+    },[])
+
     return (
         <main>
       <section id="cart-container-section" className="dsc-container">
