@@ -9,13 +9,26 @@ import { Outlet } from "react-router-dom";
 import * as productService from '../../../services/product-service';
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Category } from "../../../types/category";
 
 
 export default function Catalog() {
 
   const [products, setProducts] = useState<Product[]>([]);
 
+  const objTest: Category = {
+    id:8,
+    name: 'Jardinagem'
+  }
+
   useEffect(()=>{
+
+    //localStorage.setItem("minhaCategoria", JSON.stringify(objTest));
+
+
+    //const obj = localStorage.getItem(JSON.parse(localStorage.getItem("minhaCategoria") ||""))
+    //console.log(obj);
+
     productService.findAll()
     .then(response => {
       setProducts(response.data.content)

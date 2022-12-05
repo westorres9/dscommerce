@@ -7,9 +7,7 @@ import * as productService from '../../../services/product-service';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-
-
-
+import * as cartService from '../../../services/cart-service';
 
 export default function ProductDetails() {
 
@@ -30,6 +28,13 @@ export default function ProductDetails() {
       })
   },[]);
 
+  function handleBuyCLick() {
+    if(product) {
+      cartService.addProduct(product)
+      navigate("/cart")
+    }
+  }
+
   return (
       <main>
         <section id="product-details-section" className="dsc-container">
@@ -38,7 +43,9 @@ export default function ProductDetails() {
             <ProductDetailsCard product={product}/>
           }
           <div className="dsc-btn-page-container">
-            <ButtonPrimary textButton="Comprar"/>
+              <div onClick={handleBuyCLick}>
+                <ButtonPrimary textButton="Comprar"/>
+              </div>
             <Link to="/">
               <ButtonInverse textButton="Início"/>
             </Link>
