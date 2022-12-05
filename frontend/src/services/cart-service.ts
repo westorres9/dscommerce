@@ -4,3 +4,7 @@ import * as cartRepository from '../localStorage/cart-repository';
 export function saveCart(cart: Order) {
     cartRepository.save(cart);
 }
+
+export function getCart() : Order {
+    return cartRepository.get();
+}
