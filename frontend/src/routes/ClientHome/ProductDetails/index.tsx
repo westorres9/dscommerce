@@ -6,14 +6,17 @@ import { Product } from '../../../types/Product';
 import * as productService from '../../../services/product-service';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import {useContext, useEffect, useState} from 'react';
 import * as cartService from '../../../services/cart-service';
+import {ContextCartCount} from "../../../utils/context-cart";
 
 export default function ProductDetails() {
 
   const navigate = useNavigate();
 
   const params = useParams();
+
+  const {setContextCartCount} = useContext(ContextCartCount);
 
   const [product, setProduct] = useState<Product>();
 
@@ -30,7 +33,8 @@ export default function ProductDetails() {
 
   function handleBuyCLick() {
     if(product) {
-      cartService.addProduct(product)
+      cartService.addProduct(product);
+      setContextCartCount(cartService.getCart().items.length)
       navigate("/cart")
     }
   }

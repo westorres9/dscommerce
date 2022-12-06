@@ -7,9 +7,10 @@ import { Product } from "../../../types/Product";
 import HeaderClient from "../../../components/HeaderClient";
 import { Outlet } from "react-router-dom";
 import * as productService from '../../../services/product-service';
-import { useEffect, useState } from "react";
+import {useContext, useEffect, useState} from "react";
 import axios from "axios";
 import { Category } from "../../../types/category";
+import {ContextCartCount} from "../../../utils/context-cart";
 
 type QueryParams = {
   page: number;
@@ -21,6 +22,8 @@ export default function Catalog() {
   const [isLastPage, setIsLastPage] = useState(false);
 
   const [products, setProducts] = useState<Product[]>([]);
+
+  const {setContextCartCount} = useContext(ContextCartCount);
 
   const [queryParams, setQueryParams] = useState<QueryParams>({
     page: 0,
