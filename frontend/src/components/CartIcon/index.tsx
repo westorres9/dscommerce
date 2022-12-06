@@ -11,7 +11,10 @@ export default function CartIcon() {
     return (
         <>
             <img src={cartIcon} alt="Carrinho de compras" />
-            <div className="dsc-cart-count">{contextCartCount}</div>
+            {
+                contextCartCount > 0 && <div className="dsc-cart-count">{contextCartCount}</div>
+            }
+
         </>
     );
 }
