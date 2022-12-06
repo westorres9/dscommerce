@@ -1,7 +1,8 @@
 import './styles.css';
-import {loginRequest} from "../../../services/auth-service";
 import {useState} from "react";
 import {Credentials} from "../../../types/auth";
+import { loginRequest } from "../../../services/auth-service";
+import * as authService from '../../../services/auth-service';
 
 export  default function Login() {
 
@@ -13,8 +14,22 @@ export  default function Login() {
 
     function handleSubmit(event: any) {
         event.preventDefault();
-        loginRequest(formData);
+        authService.loginRequest(formData)
+            .then(response => {
+                console.log(response.data)
+            }).catch(error => {
+                console.log(error);
+            })
     }
+
+    function handleInputChange(event: any) {
+        const name = event.target.name;
+        const value = event.target.value;
+        setFormData({...formData, [name]: value});
+    }
+
+
+
     return (
         <main>
             <section id="login-section" className="dsc-container">
@@ -23,11 +38,25 @@ export  default function Login() {
                         <h2>Login</h2>
                         <div className="dsc-form-controls-container">
                             <div>
-                                <input className="dsc-form-control" type="text" placeholder="Email"/>
+                                <input
+                                    className="dsc-form-control"
+                                    type="text"
+                                    placeholder="Email"
+                                    name="username"
+                                    value={formData.username}
+                                    onChange={handleInputChange}
+                                />
                                     <div className="dsc-form-error"></div>
                             </div>
                             <div>
-                                <input className="dsc-form-control" type="password" placeholder="Senha"/>
+                                <input
+                                    className="dsc-form-control"
+                                    type="password"
+                                    placeholder="Senha"
+                                    name="password"
+                                    value={formData.password}
+                                    onChange={handleInputChange}
+                                />
                             </div>
                         </div>
 
