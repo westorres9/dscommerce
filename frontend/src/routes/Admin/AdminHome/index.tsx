@@ -15,9 +15,6 @@ export default function AdminHome() {
                 console.log(response.data);
                 setUser(response.data)
             })
-            .catch(error => {
-                console.log("Error", error);
-            })
     },[]);
 
     return (
