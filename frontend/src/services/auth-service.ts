@@ -3,6 +3,7 @@ import {CLIENT_ID, CLIENT_SECRET} from "../utils/system";
 import QueryString from "qs";
 import {AxiosRequestConfig} from "axios";
 import {requestBackend} from "../utils/requests";
+import * as accessTokenRepository from '../localStorage/access-token-repository';
 
 
 
@@ -24,4 +25,16 @@ export function loginRequest(loginData: Credentials) {
         headers,
     };
     return requestBackend(config);
+}
+
+export function logout() {
+    accessTokenRepository.remove();
+}
+
+export function saveAccessToken(token: string) {
+    accessTokenRepository.save(token);
+}
+
+export function getAccessToken() {
+    accessTokenRepository.get();
 }
