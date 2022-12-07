@@ -19,11 +19,10 @@ export function requestBackend(config: AxiosRequestConfig) {
 // REQUEST INTERCEPTOR
 axios.interceptors.request.use(
     function (config) {
-// DO SOMETHING BEFORE REQUEST IS SENT
+        //codigo aqui
         return config;
     },
     function (error) {
-// DO SOMETHING WITH REQUEST ERROR
         return Promise.reject(error);
     }
 )
@@ -31,11 +30,10 @@ axios.interceptors.request.use(
 // RESPONSE INTERCEPTOR
 axios.interceptors.response.use(
     function (response) {
-// DO SOMETHING WITH RESPONSE DATA IF STATUS IS 2xx
+        //codigo aqui
         return response;
     },
     function (error) {
-// DO SOMETHING WITH RESPONSE ERROR
         if(error.response.status === 401) {
             history.push("/login");
         }
