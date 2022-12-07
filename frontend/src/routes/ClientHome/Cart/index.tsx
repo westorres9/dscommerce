@@ -3,10 +3,13 @@ import computerImg from '../../../assets/img/computer.png'
 import {useContext, useEffect, useState} from 'react';
 import * as cartService from '../../../services/cart-service';
 import { Order, OrderItem } from '../../../types/order';
-import { Link } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {ContextCartCount} from "../../../utils/context-cart";
+import * as orderService from '../../../services/order-service';
 
 export default function Cart() {
+
+    const navigate = useNavigate();
 
     const [cart, setCart] = useState<Order>(cartService.getCart());
 
@@ -31,6 +34,15 @@ export default function Cart() {
     function handleDecreaseItem(productId: number) {
       cartService.decreaseItem(productId);
       updateCart();
+    }
+
+    function handlePlaceOrderOrderClick () {
+        orderService.placeOrderRequest(cart)
+            .then(response => {
+              cartService.clearCart();
+              setContextCartCount(0);
+              navigate(`/confirmation/${response.data.id}`);
+            });
     }
 
     return (
@@ -73,9 +85,9 @@ export default function Cart() {
         }
         
         <div className="dsc-btn-page-container">
-            <div className="dsc-btn dsc-btn-blue">
-              Finalizar pedido
-            </div>
+                <div onClick={handlePlaceOrderOrderClick} className="dsc-btn dsc-btn-blue">
+                    Finalizar pedido
+                </div>
             <Link to="/catalog">
             <div className="dsc-btn dsc-btn-white">
               Continuar comprando
