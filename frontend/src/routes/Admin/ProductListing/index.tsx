@@ -8,6 +8,8 @@ import SearchBar from "../../../components/SearchBar";
 import ButtonNextPage from "../../../components/ButtonNextPage";
 import DialogInfo from "../../../components/DialogInfo";
 import DialogConfirmation from "../../../components/DialogConfirmation";
+import {Simulate} from "react-dom/test-utils";
+import error = Simulate.error;
 
 
 export default function ProductListing() {
@@ -19,6 +21,7 @@ export default function ProductListing() {
 
     const [dialogConfirmationData, setDialogConfirmationData] = useState({
         visible: false,
+        id: 0,
         message: "Tem certeza?",
     });
 
@@ -58,12 +61,25 @@ export default function ProductListing() {
         setDialogInfoData({...dialogInfoData, visible: false});
     }
 
-    function handleDeleteClick() {
-        setDialogConfirmationData({...dialogConfirmationData, visible: true});
+    function handleDeleteClick(productId: number) {
+        setDialogConfirmationData({...dialogConfirmationData, id: productId, visible: true});
+        console.log(productId);
     }
 
-    function handDialogConfirmationAnswer(answer: boolean) {
-        console.log("resposta", answer);
+    function handDialogConfirmationAnswer(answer: boolean, productId: number) {
+        if(answer === true) {
+            productService.deleteById(productId)
+                .then(() => {
+                    setProducts([]);
+                    setQueryParams({...queryParams,page: 0});
+                })
+                .catch(error => {
+                    setDialogInfoData({
+                        visible: true,
+                        message: error.response.data.error
+                    })
+                })
+        }
         setDialogConfirmationData({...dialogConfirmationData, visible: false});
     }
 
@@ -99,7 +115,7 @@ export default function ProductListing() {
                                 <td className="dsc-tb768">R$ {product.price.toFixed(2)}</td>
                                 <td className="dsc-txt-left">{product.name}</td>
                                 <td><img className="dsc-product-listing-btn" src={EditIcon} alt="Editar"/></td>
-                                <td><img onClick={handleDeleteClick} className="dsc-product-listing-btn" src={DeleteIcon} alt="Deletar"/></td>
+                                <td><img onClick={() => handleDeleteClick(product.id)} className="dsc-product-listing-btn" src={DeleteIcon} alt="Deletar"/></td>
                             </tr>
                         ))
                     }
@@ -120,7 +136,10 @@ export default function ProductListing() {
 
             {
                 dialogConfirmationData.visible &&
-                <DialogConfirmation message={dialogConfirmationData.message} onDialogAnswer={handDialogConfirmationAnswer}/>
+                <DialogConfirmation
+                    id={dialogConfirmationData.id}
+                    message={dialogConfirmationData.message}
+                    onDialogAnswer={handDialogConfirmationAnswer}/>
             }
         </main>
     );
