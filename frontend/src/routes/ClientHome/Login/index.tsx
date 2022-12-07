@@ -1,11 +1,16 @@
 import './styles.css';
-import {useState} from "react";
-import {Credentials} from "../../../types/auth";
+import {useContext, useState} from "react";
+import {AccessTokenPayload, Credentials} from "../../../types/auth";
 import { loginRequest } from "../../../services/auth-service";
 import * as authService from '../../../services/auth-service';
-import {Link, Navigate} from "react-router-dom";
+import {Link, Navigate, useNavigate} from "react-router-dom";
+import {ContextToken} from "../../../utils/context-token";
 
 export  default function Login() {
+
+    const { setContextTokenPayload } = useContext(ContextToken);
+
+    const navigate = useNavigate();
 
     const [formData, setFormData] = useState<Credentials>({
         username: '',
@@ -18,6 +23,8 @@ export  default function Login() {
         authService.loginRequest(formData)
             .then(response => {
                 authService.saveAccessToken(response.data.access_token);
+                setContextTokenPayload(authService.getAccessTokenPayload());
+                navigate("/cart");
             }).catch(error => {
                console.log("Erro no login", error);
             })
