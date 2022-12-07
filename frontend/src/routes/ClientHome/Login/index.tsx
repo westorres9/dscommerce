@@ -18,6 +18,7 @@ export  default function Login() {
             .then(response => {
                 authService.saveAccessToken(response.data.access_token);
                 console.log(authService.getAccessTokenPayload());
+                console.log("AUTENTICADO : " + authService.isAuthenticated());
             }).catch(error => {
                console.log("Erro no login", error);
             })
