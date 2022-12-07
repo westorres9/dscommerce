@@ -15,6 +15,7 @@ import {AccessTokenPayload} from "./types/auth";
 import {ContextToken} from "./utils/context-token";
 import * as authService from './services/auth-service';
 import * as cartService from './services/cart-service';
+import Confirmation from "./routes/ClientHome/Confirmation";
 
 
 export default function App() {
@@ -40,7 +41,8 @@ export default function App() {
                             <Route index element={<Catalog />} />
                             <Route path="catalog" element={<Catalog />} />
                             <Route path="product-details/:productId" element={<ProductDetails />} />
-                            <Route path="cart" element={<Cart />} />
+                            <Route path="cart" element={<Cart />}/>
+                            <Route path="confirmation/:orderId" element={<Confirmation/>}/>
                             <Route path="login" element={<Login />} />
                         </Route>
                         <Route path="/admin/" element={<PrivateRoute roles={['ROLE_ADMIN']}><Admin/></PrivateRoute>}>
