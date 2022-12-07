@@ -375,3 +375,40 @@ nav a {
     font-size: 16px;
   }
 }
+
+/*-----------------------------------------------------------------*/
+/* dialog styles */
+
+
+.dsc-dialog-background {
+  position: fixed;
+  top:0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.dsc-dialog-box {
+  position: absolute;
+  background-color: var(--dsc-color-card-bg);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  top:50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.dsc-dialog-box h2{
+  font-size: 20px;
+  color: var(--dsc-color-font-primary);
+  margin-bottom: 20px;
+}
+
+.dsc-dialog-btn-container{
+  width: 100%;
+}
