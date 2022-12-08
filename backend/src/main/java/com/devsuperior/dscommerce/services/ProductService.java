@@ -69,7 +69,7 @@ public class ProductService {
             throw new ResourceNotFoundException("Id not Found " + id);
         }
         catch (DataIntegrityViolationException e) {
-            throw new DatabaseException("Integrity violation");
+            throw new DatabaseException("Falha de Integridade Referencial");
         }
     }
 

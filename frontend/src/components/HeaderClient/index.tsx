@@ -26,6 +26,7 @@ export default function HeaderClient() {
                             <Link to="/admin">
                                 <div className="dsc-menu-item">
                                     <img src={iconAdmin}/>
+                                    <span>Admin</span>
                                 </div>
                             </Link>
                         }
