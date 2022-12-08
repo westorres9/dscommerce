@@ -71,6 +71,17 @@ export function validateAll(inputs: any) {
     return newInputs;
 }
 
+export function setBackendErrors(inputs: any, errors: any[]) {
+    const newInputs = {...inputs };
+    errors.forEach(item => {
+        newInputs[item.fieldName].message = item.message;
+        newInputs[item.fieldName].dirty = "true";
+        newInputs[item.fieldName].invalid = "true";
+    });
+
+    return newInputs;
+}
+
 export function dirtyAndValidateAll(inputs: any) {
     return validateAll(toDirtyAll(inputs));
 }

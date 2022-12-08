@@ -30,6 +30,7 @@ export default function ProductForm() {
             placeholder: "Nome",
             validation: function (value: string) {
                 return /^.{3,80}$/.test(value);
+
             },
             message: "Favor informar um nome de 3 a 80 caracteres"
         },
@@ -117,7 +118,6 @@ export default function ProductForm() {
             setFormData(formDataValidated);
             return;
         }
-
         const requestBody = forms.toValues(formData);
         console.log(requestBody);
         if(isEditing) {
@@ -126,8 +126,11 @@ export default function ProductForm() {
         const request = isEditing
         ? productService.updateRequest(requestBody) : productService.insertRequest(requestBody);
         request.then(() => {
-                navigate("/admin/products")
-            })
+                navigate("/admin/products");
+            }).catch(error => {
+                const newInputs = forms.setBackendErrors(formData,error.response.data.errors)
+                setFormData(newInputs);
+        })
     }
 
     return (
