@@ -1,4 +1,5 @@
 # dscommerce
+DSCommerce é um aplicativo que simula um e-commerce, com catalogo de produtos, pagina de produtos detalhada, carrinho de compras, Tela de login, Area administrativa para gerenciamento dos produtos da loja exclusiva para usuario ADMIN,
 
 [![NPM](https://img.shields.io/npm/l/react)](https://github.com/westorres9/dscommerce/blob/main/LICENCE) 
 
@@ -14,6 +15,10 @@ Dscommerce
 ![Web 1](https://user-images.githubusercontent.com/91570669/206563257-9ed8ea6e-c18d-4893-a696-407e8a21a618.png)
 
 ![Web 2](https://user-images.githubusercontent.com/91570669/206563258-bddb163c-40a3-4ebb-9367-b960411c147c.png)
+
+![Web 3]([https://user-images.githubusercontent.com/91570669/206563258-bddb163c-40a3-4ebb-9367-b960411c147c.png](https://user-images.githubusercontent.com/91570669/206563263-89575e47-770c-41a6-adb2-bd58e771c691.png))
+
+![Web 4]([https://user-images.githubusercontent.com/91570669/206563258-bddb163c-40a3-4ebb-9367-b960411c147c.png](https://user-images.githubusercontent.com/91570669/206563249-4ce550f1-fd7d-4088-9c55-0dd54b7d6ab1.png))
 
 ## Modelo conceitual
 ![Modelo Conceitual](https://user-images.githubusercontent.com/91570669/206563729-68b3128d-03f5-4870-8350-52c3655a8ac7.png)
