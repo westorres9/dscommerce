@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import FormInput from "../../../components/FormInput";
 import * as forms from "../../../utils/forms";
 import * as productService from '../../../services/product-service';
+import {dirtyAndValidate} from "../../../utils/forms";
 
 export default function ProductForm() {
 
@@ -57,13 +58,12 @@ export default function ProductForm() {
     function handleInputChange(event: any) {
         const name = event.target.name;
         const value = event.target.value;
-        const dataUpdated = forms.update(formData,name,value);
-        const dataValidate = forms.validate(dataUpdated, name);
-        setFormData(dataValidate);
+        const result = forms.updateAndValidate(formData, name, value);
+        setFormData(result);
     }
 
     function handleTurnDirty(name: string) {
-        const newFormData = forms.toDirty(formData, name);
+        const newFormData = forms.dirtyAndValidate(formData, name);
         setFormData(newFormData);
     }
 

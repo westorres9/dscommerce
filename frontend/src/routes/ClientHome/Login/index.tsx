@@ -5,6 +5,7 @@ import * as forms from '../../../utils/forms';
 import {Link, Navigate, useNavigate} from "react-router-dom";
 import {ContextToken} from "../../../utils/context-token";
 import FormInput from "../../../components/FormInput";
+import {dirtyAndValidate} from "../../../utils/forms";
 
 export  default function Login() {
 
@@ -49,9 +50,14 @@ export  default function Login() {
     function handleInputChange(event: any) {
         const name = event.target.name;
         const value = event.target.value;
-        setFormData(forms.update(formData,name,value));
+        const result = forms.updateAndValidate(formData,name,value);
+        setFormData(result);
     }
 
+    function handleTurnDirty(name: string) {
+        const newFormData = forms.dirtyAndValidate(formData, name);
+        setFormData(newFormData);
+    }
 
 
     return (
@@ -64,6 +70,7 @@ export  default function Login() {
                             <div>
                                 <FormInput
                                     { ...formData.username }
+                                    onTurnDirty={handleTurnDirty}
                                     onChange={handleInputChange}
                                     className="dsc-form-control"
                                 />
@@ -74,6 +81,7 @@ export  default function Login() {
                                     { ...formData.password}
                                     className="dsc-form-control"
                                     onChange={handleInputChange}
+                                    onTurnDirty={handleTurnDirty}
                                 />
                             </div>
                         </div>
