@@ -16,9 +16,9 @@ Dscommerce
 
 ![Web 2](https://user-images.githubusercontent.com/91570669/206563258-bddb163c-40a3-4ebb-9367-b960411c147c.png)
 
-![Web 3](https://user-images.githubusercontent.com/91570669/206563258-bddb163c-40a3-4ebb-9367-b960411c147c.png)
+![Web 3](https://user-images.githubusercontent.com/91570669/206563261-d66c954c-985b-415c-b0ee-9eaeeab6c5a1.png)
 
-![Web 4](https://user-images.githubusercontent.com/91570669/206563258-bddb163c-40a3-4ebb-9367-b960411c147c.png)
+![Web 4](https://user-images.githubusercontent.com/91570669/206563249-4ce550f1-fd7d-4088-9c55-0dd54b7d6ab1.png)
 
 ## Modelo conceitual
 ![Modelo Conceitual](https://user-images.githubusercontent.com/91570669/206563729-68b3128d-03f5-4870-8350-52c3655a8ac7.png)
