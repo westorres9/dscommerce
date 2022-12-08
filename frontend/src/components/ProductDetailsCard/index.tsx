@@ -1,6 +1,6 @@
 import './styles.css';
 import ProductCategory from '../ProductCategory';
-import { Product } from '../../types/Product';
+import { Product } from '../../types/product';
 
 
 type Props = {

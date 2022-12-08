@@ -3,7 +3,7 @@ import EditIcon from '../../../assets/img/edit.svg';
 import DeleteIcon from '../../../assets/img/delete.svg';
 import {useEffect, useState} from "react";
 import * as productService from '../../../services/product-service';
-import { Product } from '../../../types/Product';
+import { Product } from '../../../types/product';
 import SearchBar from "../../../components/SearchBar";
 import ButtonNextPage from "../../../components/ButtonNextPage";
 import DialogInfo from "../../../components/DialogInfo";
