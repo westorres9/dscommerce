@@ -262,11 +262,11 @@ nav a {
   display: none;
 }
 
-.dsc-form-control[data-invalid="true"] {
+.dsc-form-control[data-dirty="true"][data-invalid="true"] {
   border: 2px solid var(--dsc-color-error);
 }
 
-.dsc-form-control[data-invalid="true"] ~ div {
+.dsc-form-control[data-dirty="true"][data-invalid="true"] ~ div {
   display: unset;
 }
 

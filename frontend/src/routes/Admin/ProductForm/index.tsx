@@ -20,7 +20,7 @@ export default function ProductForm() {
             placeholder: "Nome"
         },
         price: {
-            value: 200,
+            value: "",
             id: "price",
             name: "price",
             type: "number",
@@ -41,13 +41,13 @@ export default function ProductForm() {
 
     useEffect(() => {
 
-        const obj = forms.validate(formData, "imgUrl");
-        console.log(obj);
+
+        const result = forms.toDirty(formData, "price");
+        console.log(result);
 
         if(isEditing) {
             productService.findById(Number(params.productId))
                 .then(response => {
-                    console.log(forms.updateAll(formData, response.data));
                     const newFormData = forms.updateAll(formData, response.data)
                     setFormData(newFormData);
                 })
@@ -62,6 +62,11 @@ export default function ProductForm() {
         setFormData(dataValidate);
     }
 
+    function handleTurnDirty(name: string) {
+        const newFormData = forms.toDirty(formData, name);
+        setFormData(newFormData);
+    }
+
     return (
         <main>
             <section id="product-form-section" className="dsc-container">
@@ -72,6 +77,7 @@ export default function ProductForm() {
                             <div>
                                 <FormInput
                                     { ...formData.name }
+                                    onTurnDirty={handleTurnDirty}
                                     onChange={handleInputChange}
                                     className="dsc-form-control"
                                 />
@@ -80,6 +86,7 @@ export default function ProductForm() {
                             <div>
                                 <FormInput
                                     { ...formData.price }
+                                    onTurnDirty={handleTurnDirty}
                                     onChange={handleInputChange}
                                     className="dsc-form-control"
                                 />
@@ -88,6 +95,7 @@ export default function ProductForm() {
                             <div>
                                 <FormInput
                                     { ...formData.imgUrl }
+                                    onTurnDirty={handleTurnDirty}
                                     onChange={handleInputChange}
                                     className="dsc-form-control"
                                 />
