@@ -10,6 +10,7 @@ import FormTextArea from "../../../components/FormTextArea";
 import {Category} from "../../../types/category";
 import FormSelect from "../../../components/FormSelect";
 import {SelectStyles} from "../../../utils/select";
+import DialogInfo from "../../../components/DialogInfo";
 
 export default function ProductForm() {
 
@@ -97,12 +98,22 @@ export default function ProductForm() {
                     setFormData(newFormData);
                 })
         }
-    },[])
+    },[]);
+
+    const [dialogInfoData, setDialogInfoData] = useState({
+        visible: false,
+        message: "Operação realizada com sucesso",
+    });
+
+    function handleDialogInfoClose() {
+        setDialogInfoData({...dialogInfoData, visible: false});
+    }
 
     function handleInputChange(event: any) {
         const name = event.target.name;
         const value = event.target.value;
         const result = forms.updateAndValidate(formData, name, value);
+        setDialogInfoData({...dialogInfoData, visible: false});
         setFormData(result);
     }
 
@@ -206,6 +217,10 @@ export default function ProductForm() {
                     </form>
                 </div>
             </section>
+            {
+                dialogInfoData.visible &&
+                <DialogInfo message={dialogInfoData.message} onDialogClose={handleDialogInfoClose}/>
+            }
         </main>
     );
 }
