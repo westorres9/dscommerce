@@ -1,5 +1,5 @@
 import './styles.css';
-import {Link, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import FormInput from "../../../components/FormInput";
 import * as forms from "../../../utils/forms";
@@ -14,6 +14,8 @@ import {SelectStyles} from "../../../utils/select";
 export default function ProductForm() {
 
     const params = useParams();
+
+    const navigate = useNavigate();
 
     const isEditing = params.productId !== 'create';
 
@@ -49,7 +51,7 @@ export default function ProductForm() {
             type: "text",
             placeholder: "Imagem",
             validation: function (value: string) {
-                return /^.{3,80}$/.test(value);
+                return /^.{3,150}$/.test(value);
             },
             message: "Favor informar uma URL de imagem válida"
         },
@@ -115,7 +117,17 @@ export default function ProductForm() {
             setFormData(formDataValidated);
             return;
         }
-        //console.log(forms.toValues(formData));
+
+        const requestBody = forms.toValues(formData);
+        console.log(requestBody);
+        if(isEditing) {
+            requestBody.id = params.productId;
+        }
+        const request = isEditing
+        ? productService.updateRequest(requestBody) : productService.insertRequest(requestBody);
+        request.then(() => {
+                navigate("/admin/products")
+            })
     }
 
     return (
