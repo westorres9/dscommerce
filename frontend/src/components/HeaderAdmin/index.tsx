@@ -7,7 +7,7 @@ export default function HeaderAdmin() {
     return (
         <header className="dsc-header-admin">
             <nav className="dsc-container">
-                <Link to="/admin/home">
+                <Link to="/catalog">
                     <h1>DSC Admin</h1>
                 </Link>
                 <div className="dsc-navbar-right">
