@@ -18,7 +18,7 @@
   --dsc-color-font-tertiary: #fff;
   --dsc-color-font-placeholder: #d9d9d9;
 
-  --dsc-color-error: #f33;
+  --dsc-color-error: #e97065;
 }
 
 * {
@@ -255,14 +255,26 @@ nav a {
   color: var(--dsc-color-font-placeholder);
 }
 
-.dsc-input-error {
-  border: 1px solid var(--dsc-color-error);
+.dsc-form-error {
+  color: var(--dsc-color-error);
+  font-size: 12px;
+  padding-left: 4px;
+  display: none;
+}
+
+.dsc-form-control[data-invalid="true"] {
+  border: 2px solid var(--dsc-color-error);
+}
+
+.dsc-form-control[data-invalid="true"] ~ div {
+  display: unset;
 }
 
 .dsc-form-error {
   color: var(--dsc-color-error);
   font-size: 12px;
   padding-left: 4px;
+  display: none;
 }
 
 .dsc-select:invalid {
@@ -419,3 +431,4 @@ nav a {
   grid-template-columns: 1fr 1fr;
   grid-gap: 20px;
 }
+
