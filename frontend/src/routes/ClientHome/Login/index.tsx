@@ -1,8 +1,7 @@
 import './styles.css';
 import {useContext, useState} from "react";
-import {AccessTokenPayload, Credentials} from "../../../types/auth";
-import { loginRequest } from "../../../services/auth-service";
 import * as authService from '../../../services/auth-service';
+import * as forms from '../../../utils/forms';
 import {Link, Navigate, useNavigate} from "react-router-dom";
 import {ContextToken} from "../../../utils/context-token";
 import FormInput from "../../../components/FormInput";
@@ -50,7 +49,7 @@ export  default function Login() {
     function handleInputChange(event: any) {
         const name = event.target.name;
         const value = event.target.value;
-        setFormData({...formData, [name]: {...formData[name], value: value } });
+        setFormData(forms.update(formData,name,value));
     }
 
 
