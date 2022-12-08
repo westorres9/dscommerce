@@ -2,7 +2,7 @@ import './styles.css';
 import ButtonInverse from "../../../components/ButtonInverse";
 import ButtonPrimary from "../../../components/ButtonPrimary";
 import ProductDetailsCard from "../../../components/ProductDetailsCard";
-import { Product } from '../../../types/Product';
+import { Product } from '../../../types/product';
 import * as productService from '../../../services/product-service';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';

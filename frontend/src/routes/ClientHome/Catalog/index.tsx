@@ -2,7 +2,7 @@ import "./styles.css";
 import SearchBar from "../../../components/SearchBar";
 import CatalogCard from "../../../components/CatalogCard";
 import ButtonNextPage from "../../../components/ButtonNextPage";
-import { Product } from "../../../types/Product";
+import { Product } from "../../../types/product";
 
 import * as productService from '../../../services/product-service';
 import {useContext, useEffect, useState} from "react";
