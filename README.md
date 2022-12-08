@@ -8,7 +8,7 @@ https://westorres9-dscommerce.netlify.app/
 
 Dscommerce 
 ## Layout mobile
-![Mobile 1](https://user-images.githubusercontent.com/91570669/206563191-6439ec73-9a3a-42cb-bc1d-8d0f9045c06a.png) ![Mobile 2](https://user-images.githubusercontent.com/91570669/206563193-b19b90df-817e-4c9c-8e75-04393a5cd04e.png) ![Mobile 3 (https://user-images.githubusercontent.com/91570669/206563197-5dd4b1b7-e215-465a-bcd6-e3a0cc00d3b9.png)]
+![Mobile 1](https://user-images.githubusercontent.com/91570669/206563191-6439ec73-9a3a-42cb-bc1d-8d0f9045c06a.png) ![Mobile 2](https://user-images.githubusercontent.com/91570669/206563193-b19b90df-817e-4c9c-8e75-04393a5cd04e.png) ![Mobile 3] (https://user-images.githubusercontent.com/91570669/206563197-5dd4b1b7-e215-465a-bcd6-e3a0cc00d3b9.png)
 
 ## Layout web
 ![Web 1](https://user-images.githubusercontent.com/91570669/206563257-9ed8ea6e-c18d-4893-a696-407e8a21a618.png)
