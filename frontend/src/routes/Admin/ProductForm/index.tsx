@@ -9,6 +9,7 @@ import {dirtyAndValidate} from "../../../utils/forms";
 import FormTextArea from "../../../components/FormTextArea";
 import {Category} from "../../../types/category";
 import FormSelect from "../../../components/FormSelect";
+import {SelectStyles} from "../../../utils/select";
 
 export default function ProductForm() {
 
@@ -107,11 +108,21 @@ export default function ProductForm() {
         setFormData(newFormData);
     }
 
+    function handleSubmit(event: any) {
+        event.preventDefault();
+        const formDataValidated = forms.dirtyAndValidateAll(formData);
+        if(forms.hasAnyInvalid(formDataValidated)) {
+            setFormData(formDataValidated);
+            return;
+        }
+        //console.log(forms.toValues(formData));
+    }
+
     return (
         <main>
             <section id="product-form-section" className="dsc-container">
                 <div className="dsc-product-form-container">
-                    <form className="dsc-card dsc-form">
+                    <form className="dsc-card dsc-form" onSubmit={handleSubmit}>
                         <h2>Dados do produto</h2>
                         <div className="dsc-form-controls-container">
                             <div>
@@ -144,7 +155,8 @@ export default function ProductForm() {
                             <div>
                                 <FormSelect
                                     { ...formData.categories }
-                                    className="dsc-form-control"
+                                    className="dsc-form-control dsc-form-select-container"
+                                    styles={SelectStyles}
                                     options={categories}
                                     onChange={(obj: any) => {
                                         const newFormdata = forms.updateAndValidate(formData, "categories", obj);

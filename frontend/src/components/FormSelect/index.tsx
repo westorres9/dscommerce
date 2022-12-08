@@ -16,7 +16,10 @@ export default function FormSelect(props: any) {
     }
 
     return (
-        <div className={className} data-invalid={invalid} data-dirty={dirty} >
+        <div
+            className={className}
+            data-invalid={invalid}
+            data-dirty={dirty} >
             <Select { ...selectProps } onBlur={handleBlur}  />
         </div>
     );
